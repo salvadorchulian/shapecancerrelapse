@@ -607,7 +607,7 @@ for markers in lista:
         for j in range(0,3):
             axs[i][j].tick_params(labelsize=fontsize)
     plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
-    fig1.savefig('/Users/salvador/Desktop/'+markers+'.png')
+    fig1.savefig('/home/Desktop/'+markers+'.png')
     
     pFrameaux=pd.DataFrame([{'Discovery_0':p00,'Validation_0':p01,'Discovery_Validation_0':p02,'Discovery_1':p10,'Validation_1':p11,'Discovery_Validation_1':p12}])
     tFrameaux=pd.DataFrame([{'Discovery_0':t00,'Validation_0':t01,'Discovery_Validation_0':t02,'Discovery_1':t10,'Validation_1':t11,'Discovery_Validation_1':t12}])

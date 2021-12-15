@@ -234,9 +234,6 @@ import numpy as np
 sourcerelapse='/home/HospitalXLandmarks_RIPS/RelapseAnalysis'
 sourcenonrelapse='/home/HospitalXLandmarks_RIPS/NonRelapseAnalysis'
 
-sourcerelapse='/Users/salvador/Google Drive/OXFORD2021/TODOSJUNTOS0.001_RIPS/NonRelapseAnalysis'
-sourcenonrelapse='/Users/salvador/Google Drive/Oxford2021/TODOSJUNTOS0.001_RIPS/RelapseAnalysis'
-
 dfnotnormed=pd.read_csv('/'.join(sourcerelapse.split('/')[0:-1])+'/'+'Analysis_0001_SE_NJ.csv')
 
 TODOSSEV=['CD10','CD123','CD13','CD19','CD20','CD24','CD33','CD34','CD38','CD45','CD66c','CD7','CD9','FSC.H','FSC.A','SSC.A','KAPPA','LAMBDA']

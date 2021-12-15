@@ -31,7 +31,7 @@ from sklearn.model_selection import KFold # import KFold
 from sklearn import svm
 from imblearn.over_sampling import RandomOverSampler
 
-base='/Users/salvador/Google Drive/OXFORD2021/TODOSJUNTOS0.001_10203845_RIPS'
+base='/home/HospitalXLandmarks_CD10203845RIPS/'
 
 
 dimensions=[0,1,2]
@@ -215,7 +215,7 @@ from sklearn import svm
 from imblearn.over_sampling import RandomOverSampler
 
 
-base='/Users/salvador/Google Drive/OXFORD2021/TODOSJUNTOS0.001_10203845_RIPS'
+base='/home/HospitalXLandmarks_CD10203845RIPS/'
 
 
 

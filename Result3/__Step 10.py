@@ -43,7 +43,7 @@ class MidpointNormalize(Normalize):
         x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
         return np.ma.masked_array(np.interp(value, x, y))
 
-base='/Users/salvador/Desktop/TODOSJUNTOS0.001_10203845_RIPSdim2'
+base='/home/HospitalXLandmarks_CD10203845RIPS/'
 
 
 
