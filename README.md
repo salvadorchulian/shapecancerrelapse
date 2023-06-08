@@ -2,19 +2,19 @@ The structure of this github is organised as follows:
 
 ###
 
-Result 1
+# Result 1
 
-# Step 1: Reading files
+## Step 1: Reading files
 
 
 
-# Step 2: Obtaining landmarks
+## Step 2: Obtaining landmarks
 
-# Step 3: Vietoris-rips in pairwise combinations
+## Step 3: Vietoris-rips in pairwise combinations
 
-# Step 4: Statistical analysis
+## Step 4: Statistical analysis
 
-# Step 5: Random Forest
+## Step 5: Random Forest
 
 ###
 
