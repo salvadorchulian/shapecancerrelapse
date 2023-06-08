@@ -8,13 +8,13 @@ The structure of this github is organised as follows:
 
 Input: Flow cytometry data files obtained in http://flowrepository.org/id/FR-FCM-Z68U, as a Folder, distinguished in two subfolders "Relapsed" (R) and "NonRelapsed" (NR) patients
 
-Output: .txt files, distinguished in two subfolders for R and NR patients, having deleted duplicates in data, with flow cytometry information for each parameter
+Output: .txt files, distinguished in two subfolders for R and NR patients, having deleted duplicates in data, with flow cytometry information for each parameter.
 
 ## Step 2: Obtaining landmarks
 
 Input: output from Step 1.
 
-Output: .csv files with the corresponding Landmarks, having performed the MaxMin algorithm
+Output: .csv files with the corresponding Landmarks, having performed the MaxMin algorithm.
 
 ## Step 3: Vietoris-rips in pairwise combinations
 
@@ -32,7 +32,7 @@ Output: .csv files, including for each pairwise combination of parameters, the m
 
 Input: output from Step 4.
 
-Output: Data S1 and S2 from the main manuscript, where AUC and other classification markers are obtained using Random Forest
+Output: Data S1 and S2 from the main manuscript, where AUC and other classification markers are obtained using Random Forest.
 
 ###
 
@@ -40,7 +40,15 @@ Output: Data S1 and S2 from the main manuscript, where AUC and other classificat
 
 ## Step 6: Vietoris-Rips for Biomarkers CD10-20-38-45
 
+Input: output from Step 2.
+
+Output: Output: .txt files, where for each pairwise combination of parameters of the Biomarkers CD10-20-38-45, the vietoris-rips method is applied in each patient. Such files include the results of the persistence barcodes in dimensions 0 and 1, and is organised in R and NR folders. Please see that these files are included in the Folder "RIPS DATA (from Step 3-4 and 6-7)".
+
 ## Step 7: Statistical analysis
+
+Input: output from Step 6.
+
+Output: persistence curves and their statistical analysis presented in Supplementary Information.
 
 ###
 
