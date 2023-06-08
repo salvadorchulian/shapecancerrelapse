@@ -24,7 +24,7 @@ Output: Csv files with Landmarks, having performed the MaxMin algorithm
 
 ###
 
-Result 2
+# Result 2
 
 ## Step 6: Vietoris-Rips for Biomarkers CD10-20-38-4 
 
@@ -32,7 +32,7 @@ Result 2
 
 ###
 
-Result 3
+# Result 3
 
 ## Step 8: Creation of Persistence Images (PIs)
 
