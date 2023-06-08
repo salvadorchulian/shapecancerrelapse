@@ -12,7 +12,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import time
 import os
-
+import cytoflow as flow # Please install the following library https://cytoflow.readthedocs.io/en/stable/index.html
 
 def readingdir(direct):
     # The input of this function is the folder with subfolders of patients and their fcs files.
