@@ -12,6 +12,10 @@ Output: txt files, distinguished in two subfolders for R and NR patients, having
 
 ## Step 2: Obtaining landmarks
 
+Input: output from Step 1.
+
+Output: Csv files with Landmarks, having performed the MaxMin algorithm
+
 ## Step 3: Vietoris-rips in pairwise combinations
 
 ## Step 4: Statistical analysis
