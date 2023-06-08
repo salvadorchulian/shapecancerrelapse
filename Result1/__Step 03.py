@@ -11,6 +11,7 @@
 import numpy as np
 import pandas as pd
 import time
+# Install ripser and persim from https://ripser.scikit-tda.org/en/latest/
 from ripser import ripser
 from persim import plot_diagrams
 from numpy import loadtxt
