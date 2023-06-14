@@ -1,3 +1,5 @@
+Please be aware that, in ALL steps in this Github, users must change the directories included, as well as install the corresponding libraries for the  files to run correctly.
+
 The structure of this github is organised as follows:
 
 ###
