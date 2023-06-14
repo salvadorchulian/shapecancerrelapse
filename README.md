@@ -8,7 +8,7 @@ The structure of this github is organised as follows:
 
 Input: Flow cytometry data files obtained in http://flowrepository.org/id/FR-FCM-Z68U, as a Folder, distinguished in two subfolders "Relapsed" (R) and "NonRelapsed" (NR) patients
 
-Output: .txt files, distinguished in two subfolders for R and NR patients, having deleted duplicates in data, with flow cytometry information for each parameter.
+Output: .txt files, distinguished in two subfolders for R and NR patients, having deleted duplicates in data, with flow cytometry information for each parameter. These two processes are distinguished so that we can keep track of duplicated events in files.
 
 ## Step 2: Obtaining landmarks
 

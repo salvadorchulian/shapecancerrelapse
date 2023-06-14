@@ -16,7 +16,8 @@ import cytoflow as flow # Please install the following library https://cytoflow.
 
 def readingdir(direct):
     # The input of this function is the folder with subfolders of patients and their fcs files.
-    # Merging all samples and normalisation is not included in these files. 
+    # Merging all samples and normalisation is not included in these files.
+    # This transforms all FCS files into TXT
     output='/home/outputfolder'
     os.mkdir(output)
     listdir=os.listdir(direct)

@@ -24,6 +24,7 @@ from itertools import combinations
 
 def paramrips(loadfile,TODOS,combi,tube,pacient,ripsdir):
     start_time = time.time()
+    print("Loading RIPS in this file. Please consider that this step takes a lot of computing resources from your machine.")
     ripsfile=ripser(np.array(loadfile[:,combi]))['dgms']
     tuberips=ripsdir+'/'+TODOS[combi[0]]+"-"+TODOS[combi[1]]+'/'+pacient
     os.mkdir(tuberips)
@@ -57,6 +58,8 @@ def ripsing(tube,pacient,direct,ripsdir):
                     for k in range(0,len(comb)):
                         paramrips(loadfile,ALLPARAM,comb[k],tube,pacient,ripsdir)
                     print("----- Ended "+pacient)
+                else:
+                    print("File is too big. Please select landmarks in your file")
             else:
                 print('Tube '+pacient+'/'+tube+' already ripsed!')
         
