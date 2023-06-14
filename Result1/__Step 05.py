@@ -20,8 +20,8 @@ from sklearn.metrics import roc_curve,roc_auc_score
 from sklearn.metrics import confusion_matrix
 import os
 
-sourcerelapse='/Users/salvador/Documents/shapecancerrelapse/RIPS DATA (from Step 3-4 and 6-7)/All combinations (Step 3-4)/RelapseAnalysis'
-sourcenonrelapse='/Users/salvador/Documents/shapecancerrelapse/RIPS DATA (from Step 3-4 and 6-7)/All combinations (Step 3-4)/NonRelapseAnalysis'
+sourcerelapse='/home/HospitalXLandmarks_RIPS/RelapseAnalysis'
+sourcenonrelapse='/home/HospitalXLandmarks_RIPS/NonRelapseAnalysis'
 
 
 listparam=os.listdir(sourcerelapse)
@@ -212,17 +212,13 @@ from sklearn.metrics import confusion_matrix
 import os
 import numpy as np
 from sklearn.model_selection import train_test_split
-
-
 from sklearn.model_selection import RepeatedStratifiedKFold
 
 
 
 
-
-
-sourcerelapse='/Users/salvador/Documents/shapecancerrelapse/RIPS DATA (from Step 3-4 and 6-7)/All combinations (Step 3-4)/RelapseAnalysis'
-sourcenonrelapse='/Users/salvador/Documents/shapecancerrelapse/RIPS DATA (from Step 3-4 and 6-7)/All combinations (Step 3-4)/NonRelapseAnalysis'
+sourcerelapse='/home/HospitalXLandmarks_RIPS/RelapseAnalysis'
+sourcenonrelapse='/home/HospitalXLandmarks_RIPS//NonRelapseAnalysis'
 
 
 ALLPARAM=['CD34','CD20','CD10','CD19','CD45','CD13','CD33','cyCD3','cyMPO','CD22','IGM','CD38','cyTDT','CD3','CD66','CD58']
