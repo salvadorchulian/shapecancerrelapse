@@ -8,11 +8,9 @@
 
 
 
-
-# Repeat Steps 1 and 2 and obtain analysis. 
+# Important: From the previous Steps, please select only the parameters CD10-20-38-45 to perform these analysis.
+# Here we will repeat Step 3.
 # Important: we accounted here for dimension 2 as well, reducing the number of landmarks to 1000.
-# We ran this analysis for the pairwise combinations of files (see Previous Steps)
-
 
 
 

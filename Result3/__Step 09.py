@@ -8,6 +8,15 @@
 
 
 
+import os
+import numpy as np
+from persim import PersImage
+from sklearn import metrics
+from sklearn import svm
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+
+base= '/home/HospitalXLandmarks_CD10203845/4D Analysis/PersistenceImages'
 
 # Load PIs for analysis 
 DIMENSION=0

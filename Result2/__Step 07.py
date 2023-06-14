@@ -11,6 +11,11 @@
 
 import pandas as pd
 import os
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+fontsize=12
+fontname="Helvetica"
 
 def read_and_save(filedir,tube):
     if tube[0]!='.':
@@ -77,8 +82,8 @@ def read_and_save2(filedir,tube):
 import os
 ###### PERSISTENCE CURVES CONSTRUCTION for DIM 0
 dpi=300
-base='home/HospitalXLandmarks_CD10203845_RIPS'
-markers='' #The option markers can be used to select specific pairwise combinations
+base='home/HospitalXLandmarks_CD10203845_RIPS/4D Analysis' # Use here the Subfolder 4D Analysis and Dimensions 0 and 1
+markers=''
 direct=base+'/'+'Relapse'+markers
 listdirR=os.listdir(direct)
 listdirR=[x for x in listdirR if not x.startswith('.')]
@@ -340,7 +345,7 @@ lim_down_1=0.007
 lim_up_1=0.015
 
 
-
+base='home/HospitalXLandmarks_CD10203845_RIPS/Pairwise combinations' # Use here the subfolder to perform these analyses in all pairwise combinations
 
 dpi=300
 

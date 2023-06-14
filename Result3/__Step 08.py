@@ -66,12 +66,12 @@ def read_and_save2(filedir,tube):
 
 from persim import PersImage
 import pandas as pd
-
+import numpy as np
 base='/home/HospitalXLandmarks_RIPS'
 
 pixels_intervals=[5,10,25,50,100]
 spread_intervals=[0.05,0.01]
-dim_intervals=[2] #One can select the dimension to obtain the Persistence Images
+dim_intervals=[2] #One can select the dimension to obtain the Persistence Images [0,1] or [2]
 
 for DIMENSION in dim_intervals:
     for p in pixels_intervals:
@@ -95,7 +95,7 @@ for DIMENSION in dim_intervals:
                     RipsNR[j]=[item for item in Ripsaux if len(item)!=0]
                     ImgsNR[j]=PimNR.transform(RipsNR[j][0][0][DIMENSION])
 
-
+                 print("NR patient counter: "+str(j))
 
 
             direct=base+'/'+'Relapse'
@@ -115,7 +115,7 @@ for DIMENSION in dim_intervals:
                         Ripsaux[i]=read_and_save2(direct+'/'+listdirR[j],listpac[i])
                     RipsR[j]=[item for item in Ripsaux if len(item)!=0]
                     ImgsR[j]=PimR.transform(RipsR[j][0][0][DIMENSION])
-
+                 print("R patient counter: "+str(j))
             print('Done spread '+str(spread)+', pixels '+str(p))
 
             folder='PersistenceImages'+str(DIMENSION)
