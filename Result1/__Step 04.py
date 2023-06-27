@@ -17,16 +17,21 @@ def read_and_save(filedir,tube):
         file_name, file_extension = os.path.splitext(filedir+'/'+tube)
         tubename=tube.split('_')[0].split('.')[0] #TubeX "name"
         tubenamerips=tube.split('_')[-1].split('.')[0] #Feature from Tube X: Rips 0 or 1
+        # Reads information from Dimension 0 and 1 analyses
         if file_extension != '.pdf' and tubenamerips=='Rips0':
             Rips0=np.array(pd.read_csv(filedir+'/'+'_'.join(tube.split('_')[:-1])+'_Rips0.txt', sep=" ", header=None))
+            #Checks for nan values in dimension 0
             if np.isnan(Rips0[-1,1]):
                 Rips0[-1,1]=np.inf
             Rips1=np.array(pd.read_csv(filedir+'/'+'_'.join(tube.split('_')[:-1])+'_Rips1.txt', sep=" ", header=None))
+            #Checks for nan values in dimension 1
             if np.isnan(Rips1[-1,1]):
                 Rips1[-1,1]=0
             Rips=[Rips0,Rips1]
             Biglist=[None]*2
             isinf=[False]*2
+            
+            #Computes persistance in each dimension
             for j in range(0,len(Rips)):
                 Persistlist=[None]*len(Rips[j])
                 for i in range(0,len(Rips[j])):
@@ -45,6 +50,8 @@ os.mkdir(outputdir)
 listparam=os.listdir(direct)
 listparam.sort()
 
+
+#Obtain name of the tubes
 def splitting(lista,nametubes,namepacs):
     splitter = lambda lista: [x.split('.')[0] for x in lista]
     origtubenames = list(map(splitter, nametubes))
@@ -104,6 +111,8 @@ for l in range(0,len(listparam)): #Analysis for each combination of parameters
                 else:
                     namepacs.append(listdir[i])
         [savepacs,lista,flat_tubes,arrays]=splitting(lista,nametubes,namepacs)
+        #savepacs includes the information per patient in
+        #i=patient; j=tube; k=dimension
         maxper=[[]]*2
         medper=[[]]*2
         meanper=[[]]*2
@@ -111,6 +120,7 @@ for l in range(0,len(listparam)): #Analysis for each combination of parameters
         stdper=[[]]*2
         lenlist=[[]]*2
         print('\n------ Statistic Analysis ------')
+        # Compute max, min, med,mean,length and std for each dimension in each tube in each patient
         for i in range(0,len(savepacs)): #for every patient
      
             for j in range(0,len(savepacs[i])):#for every tube
@@ -142,6 +152,7 @@ for l in range(0,len(listparam)): #Analysis for each combination of parameters
         df.to_csv(finalout+'/'+listparam[l]+'.csv')
         dfnorm=pd.DataFrame(np.empty((len(flat_tubes),len(columnnames))),
                           index=arrays,columns=columnnames)
+        #Normalize info considering the length
         for i in range(0,len(columnnames)):
             if i%2==0: #if its even (Dim 0)
                 dfnorm[columnnames[i]]=df[columnnames[i]].values/df['Lenlist0'].values

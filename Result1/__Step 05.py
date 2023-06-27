@@ -33,6 +33,7 @@ NORMED=False
 names=listparam
 names.sort()
 df=pd.DataFrame(columns=['AUC','TPR','TNR','PPV','NPV','FPR','FNR','FDR','ACC'],index=names)
+# Loops for patient and tube combination
 for l in range(0,len(listparam)):
     if listparam[l][0]!='.':
         print('\n----------')
@@ -71,7 +72,7 @@ for l in range(0,len(listparam)):
                     predsgeneral=[]
                     testsgeneral=[]
 
-
+                    # Inizialization of statistical outputs from classification
                     ######
                     TN=np.zeros(maxit)
                     TN[:]=np.nan
@@ -101,9 +102,10 @@ for l in range(0,len(listparam)):
 
                     ######
 
-
+                    # For each iteration
                     for r in range(0,maxit):
-                     
+                        
+                        # Divide in train and test, use
                         samples=np.array(datarelapse.sample(frac=0.6).index)
                         datarelapse['is_train']=0
                         datarelapse.loc[samples,'is_train']=1
@@ -111,14 +113,13 @@ for l in range(0,len(listparam)):
                         datanonrelapse['is_train']=0
                         datanonrelapse.loc[samples,'is_train']=1
                         RANDOM_STATE=123
+                        # Create Random Forest classifiers
                         ensemble_clfs = [
                             ("RandomForestClassifier, max_features=None",
                                 RandomForestClassifier(warm_start=True, max_features=None,
                                                        oob_score=True,
                                                        random_state=RANDOM_STATE))
                         ]
-                        min_estimators = 15
-                        max_estimators = 175
                         trainrelapse,testrelapse  = datarelapse[datarelapse['is_train']==True],datarelapse[datarelapse['is_train']==False]
                         trainnonrelapse,testnonrelapse  = datanonrelapse[datanonrelapse['is_train']==True],datanonrelapse[datanonrelapse['is_train']==False]
                         train=pd.concat([trainnonrelapse,trainrelapse]).reset_index(drop=True)
@@ -128,15 +129,16 @@ for l in range(0,len(listparam)):
                         names=['Nonrelapse','Relapse']
                         error_rate = OrderedDict((label, []) for label, _ in ensemble_clfs)
 
-                        # Range of number of estimator values
-                        min_estimators = 20
-                        max_estimators = 100
 
+
+                        ## If the oob_error is to be checked with a range of estimators, use the following code
+                        ## Range of number of estimator values
+                        #min_estimators = 20
+                        #max_estimators = 100
                         #for label, clf in ensemble_clfs:
                         #    for i in range(min_estimators, max_estimators + 1):
                         #        clf.set_params(n_estimators=i)
                         #        clf.fit(train[features], y)
-#
                         #        # Record the OOB error
                         #        oob_error = 1 - clf.oob_score_
                         #        #error_rate[label].append((i, oob_error))
@@ -148,9 +150,11 @@ for l in range(0,len(listparam)):
                         preds=np.array(names)[clf.predict(test[features])]
                         preds[preds=='Nonrelapse']=0
                         preds[preds=='Relapse']=1
-
+                        
+                        # Create confusion matrix
                         confusionmatrix=pd.crosstab(test['Relapse'], preds, rownames=['Relapsed patients?'], colnames=['Predicted Diagnosis'])
 
+                        # Compute all statistical measures
                         confmatrices.append(confusionmatrix.values)
                         feataux=list(zip(train[features], clf.feature_importances_))
                         featuresimp.append(feataux)
@@ -195,11 +199,13 @@ for l in range(0,len(listparam)):
                     df.iloc[l]=[round(item,2) for item in list(map(np.nanmean,[rocscore,TPR,TNR,PPV,NPV,FPR,FNR,FDR,ACC]))]
                     print('Done. Performed '+str(l+1)+'/'+str(len(listparam)))
 
+
+#Export analysis
 df.to_csv('/'.join(sourcerelapse.split('/')[0:-1])+'/'+'Analysis_Simple.csv')
 
 
 ###### STEP 5.2: RANDOM FOREST analysis with oversampling
-
+# Same comments as previously
 
 import os
 import pandas as pd

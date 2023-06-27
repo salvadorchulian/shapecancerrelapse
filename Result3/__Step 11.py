@@ -230,6 +230,7 @@ tablaLR_LOOCV=[[]]*len(dimensions)
 tablaSVM_LOOCV=[[]]*len(dimensions)
 
 
+# Loop in each dimension, pixel and spread distribution
 datosgeneral=[]
 for nitem in range(0,len(dimensions)):
     DIMENSION=dimensions[nitem]
@@ -394,6 +395,7 @@ nR=len(listdirR)
 n=nNR+nR
 dataNR=[[[[]]*nNR]*len(spreads)]*len(pixel)
 mat012=[]
+#Glueing of all images
 for j in range(0,len(spreads)):
     spreadAUX=[]
     for i in range(0,len(pixel)):
@@ -409,7 +411,7 @@ tablaSVM012=[[[] for j in range(len(pixel))] for i in range(len(spreads))]
 
 
 
-
+#Classification per spread and pixel distribution loop
 for j in range(0,len(spreads)):
     for i in range (0,len(pixel)):
         timeINI=time.time()

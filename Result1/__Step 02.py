@@ -24,7 +24,7 @@ import re
 from joblib import Parallel, delayed
 import multiprocessing
 
-
+# This function go through each patient's file to perform the MaxMin algorithm
 def MaxMinPAC(pacient,direct,outdir):
     listpac=os.listdir(direct+'/'+pacient)
     listpac.sort()
@@ -36,6 +36,7 @@ def MaxMinPAC(pacient,direct,outdir):
         for j in range(0,len(listpac)):
             MaxMin(listpac[j],pacient,direct,outdir)
         
+# MaxMin algorithm, which reads either txt or csv files
 def MaxMin(tube,pacient,direct,outdir):
     extension=tube.split('.')[-1]
     if extension=='txt':
@@ -61,6 +62,7 @@ def MaxMin(tube,pacient,direct,outdir):
             datanew=data.drop(yindex)
 
             D=[]
+            #Looks in the data for the furthest datapoint in the set in each loop, and adds it to the final list datanew
             for i in range(0,m-1):
                 indexlist=[]
                 maxlist=[]
@@ -94,6 +96,7 @@ os.mkdir(outdir)
 listdir=os.listdir(direct)
 listdir.sort()
 num_cores=multiprocessing.cpu_count()
+# Parallelisation of the code: this step is computationally costy
 Parallel(n_jobs=num_cores)(delayed(MaxMinPAC)(listdir[i],direct,outdir) for i in range(0,len(listdir)))
 
 

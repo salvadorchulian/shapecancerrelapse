@@ -5,7 +5,7 @@
 ############### STEP 8: Creation of Persistence Images ############### 
 
 
-
+# This function reads the info from Vietoris-Rips analysis in dimension 0 and 1
 def read_and_save(filedir,tube):
     if tube[0]!='.':
         file_name, file_extension = os.path.splitext(filedir+'/'+tube)
@@ -34,6 +34,7 @@ def read_and_save(filedir,tube):
         else:
             return []
         
+# This function reads the info from Vietoris-Rips analysis in dimension 2
 def read_and_save2(filedir,tube):
     if tube[0]!='.':
         file_name, file_extension = os.path.splitext(filedir+'/'+tube)
@@ -73,6 +74,7 @@ pixels_intervals=[5,10,25,50,100]
 spread_intervals=[0.05,0.01]
 dim_intervals=[2] #One can select the dimension to obtain the Persistence Images [0,1] or [2]
 
+# Loop for the construction in each dimension, pixel interval, and spread chosen for the PI construction
 for DIMENSION in dim_intervals:
     for p in pixels_intervals:
         pixels=[p,p]

@@ -32,6 +32,8 @@ dirNR=base+'/'+folder+'/'+str(pixels[0])+'_'+str(spread)+'/'+'NonRelapse'
 numberR=len(os.listdir(dirR))
 numberNR=len(os.listdir(dirNR))
 
+
+#Read all PIs
 listdirR=os.listdir(dirR)
 listdirR.sort()
 listdirR=[x for x in listdirR if not x.startswith('.')]

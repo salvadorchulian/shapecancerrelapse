@@ -36,6 +36,7 @@ import errno
 import multiprocessing
 from joblib import Parallel, delayed
 
+# This function performs the Vietoris-rips analysis (ripser) in each of the patient's data, looking for dimension 0 and 1
 def ripsing(tube,pacient,direct,ripsdir):
     if tube[0]!='.' and tube.split('.')[-2][-6:]!='Others':
         print(tube)
@@ -77,7 +78,7 @@ def ripsing(tube,pacient,direct,ripsdir):
             f = open('ListR.txt',"a")
             f.write(pacient+'/'+tube+' already ripsed. Size:'+str(MB_file)+' MBs.\n')
             f.close()
-
+#Loops in the patients subfolders
 def general(direct,ripsdir,P):
     if P[0]!='.':
         print('----------')
@@ -101,6 +102,7 @@ os.mkdir(ripsdir)
 listdir=os.listdir(direct)
 listdir.sort()
 num_cores=multiprocessing.cpu_count()
+#Parallelisation of the code: this is computational costy
 Parallel(n_jobs=num_cores)(delayed(general)(direct,ripsdir,listdir[j]) for j in range(0,len(listdir)))
 
 
@@ -127,7 +129,7 @@ import os
 import errno
 import multiprocessing
 from joblib import Parallel, delayed
-
+# This function performs the Vietoris-rips analysis (ripser) in each of the patient's data, looking for dimension 2
 def ripsing(tube,pacient,direct,ripsdir):
     if tube[0]!='.' and tube.split('.')[-2][-6:]!='Others':
         print(tube)
@@ -144,6 +146,7 @@ def ripsing(tube,pacient,direct,ripsdir):
                     loadfile=pd.read_csv(file_name).drop(columns='Unnamed: 0')
                 else:
                     print('Problem reading.')
+                #Selects 1000 points
                 m=1000 #Number of selected rows
                 loadfile=loadfile.iloc[0:m,:];
                 print('Begin Rips')
@@ -170,7 +173,8 @@ def ripsing(tube,pacient,direct,ripsdir):
             f = open('ListR.txt',"a")
             f.write(pacient+'/'+tube+' already ripsed. Size:'+str(MB_file)+' MBs.\n')
             f.close()
-
+            
+#Loops in the patients subfolders
 def general(direct,ripsdir,P):
     if P[0]!='.':
         print('----------')
@@ -193,5 +197,6 @@ ripsdir='/home/HospitalXLandmarks_CD10203845_RIPS2/NonRelapse'
 listdir=os.listdir(direct)
 listdir.sort()
 num_cores=multiprocessing.cpu_count()
+#Parallelisation of the code: this is computational costy
 Parallel(n_jobs=num_cores)(delayed(general)(direct,ripsdir,listdir[j]) for j in range(0,len(listdir)))
 

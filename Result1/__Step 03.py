@@ -22,6 +22,7 @@ from joblib import Parallel, delayed
 from itertools import combinations
 
 
+# This function performs the Vietoris-rips analysis (ripser) in each of the patient's data, looking for dimension 0 and 1
 def paramrips(loadfile,TODOS,combi,tube,pacient,ripsdir):
     start_time = time.time()
     print("Loading RIPS in this file. Please consider that this step takes a lot of computing resources from your machine.")
@@ -37,6 +38,7 @@ def paramrips(loadfile,TODOS,combi,tube,pacient,ripsdir):
     f.close();
 
 
+# This function selects the data to be "ripsed" with paramrips. If data is too big (>1.5MB) it does not select the patient's file due to computational cost
 def ripsing(tube,pacient,direct,ripsdir):
         if tube[0]!='.' and tube.split('.')[-2][-6:]!='Others':
             print(tube)
@@ -62,7 +64,7 @@ def ripsing(tube,pacient,direct,ripsdir):
                     print("File is too big. Please select landmarks in your file")
             else:
                 print('Tube '+pacient+'/'+tube+' already ripsed!')
-        
+#Loops in the patients subfolders
 def general(direct,ripsdir,P):
     if P[0]!='.':
         print('----------')
@@ -89,6 +91,7 @@ ALLPARAM=['CD34','CD20','CD10','CD19','CD45','CD13','CD33','cyCD3','cyMPO','CD22
 ALLPARAM.sort()
 comb=list(combinations(range(0,len(ALLPARAM)),2))
 
+#Parallelisation of the code: this is computational costy
 Parallel(n_jobs=num_cores)(delayed(general)(direct,ripsdir,listdir[j]) for j in range(0,len(listdir)))
 
 

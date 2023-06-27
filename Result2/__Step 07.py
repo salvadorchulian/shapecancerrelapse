@@ -17,6 +17,7 @@ from scipy import stats
 fontsize=12
 fontname="Helvetica"
 
+# This functions reads the information from the Vietoris Rips in dimension 0 and 1
 def read_and_save(filedir,tube):
     if tube[0]!='.':
         file_name, file_extension = os.path.splitext(filedir+'/'+tube)
@@ -46,7 +47,8 @@ def read_and_save(filedir,tube):
             return []
 
 #Reading Dimension 2
-        
+
+# This functions reads the information from the Vietoris Rips in dimension 2
 def read_and_save2(filedir,tube):
     if tube[0]!='.':
         file_name, file_extension = os.path.splitext(filedir+'/'+tube)
@@ -89,6 +91,8 @@ listdirR=os.listdir(direct)
 listdirR=[x for x in listdirR if not x.startswith('.')]
 RipsR=[[]]*len(listdirR)
 listdirR.sort()
+#Obtain the information for each patient and dimension and glue all together in one vector
+#We do this for Relapsing (R) and Non-Relapsing (NR) patients
 for j in range(0,len(listdirR)):
     if listdirR[j][0]!='.' :
         listpac=os.listdir(direct+'/'+listdirR[j])
@@ -120,6 +124,7 @@ auxNR0=[np.array(RipsNR[i][0][1][0]) for i in range(0,len(RipsNR))]
 auxR1=[np.array(RipsR[i][0][1][1]) for i in range(0,len(RipsR))]
 auxNR1=[np.array(RipsNR[i][0][1][1])for i in range(0,len(RipsNR))]
 ########
+# Plots of information of Rips information
 span_threshold=np.linspace(lim_down_0,lim_up_0,200)
 beta0_NR=[[]]*len(auxNR0)
 span0_NR=[[]]*len(span_threshold)
@@ -137,6 +142,7 @@ plt.plot(span_threshold,span0_NR,span_threshold,span0_R)
 plt.xticks(fontname=fontname, fontsize=fontsize)
 plt.yticks(fontname=fontname, fontsize=fontsize)
 plt.grid(False)
+#T-test
 g1 = span0_NR
 g2 = span0_R
 t, p = stats.ttest_ind(g1, g2)
@@ -159,6 +165,7 @@ listdirR=[x for x in listdirR if not x.startswith('.')]
 RipsR=[[]]*len(listdirR)
 listdirR.sort()
 for j in range(0,len(listdirR)):
+    #With this line we can select the hospital used for this analyses
     if listdirR[j][0]!='.' and listdirR[j][0:3]=="HMU":
         listpac=os.listdir(direct+'/'+listdirR[j])
         listpac.sort()
@@ -174,6 +181,7 @@ listdirNR=[x for x in listdirNR if not x.startswith('.')]
 listdirNR.sort()
 RipsNR=[[]]*len(listdirNR)
 for j in range(0,len(listdirNR)):
+    #With this line we can select the hospital used for this analyses
     if listdirNR[j][0]!='.' and listdirNR[j][0:3]=="HMU":
         listpac=os.listdir(direct+'/'+listdirNR[j])
         listpac.sort()
@@ -189,6 +197,7 @@ auxNR0=[np.array(RipsNR[i][0][1][0]) for i in range(0,len(RipsNR))]
 auxR1=[np.array(RipsR[i][0][1][1]) for i in range(0,len(RipsR))]
 auxNR1=[np.array(RipsNR[i][0][1][1])for i in range(0,len(RipsNR))]
 ################
+# Plots
 span_threshold=np.linspace(lim_down_1,lim_up_1,200)
 beta1_NR=[[]]*len(auxNR1)
 span1_NR=[[]]*len(span_threshold)
@@ -208,6 +217,7 @@ plt.plot(span_threshold,span1_NR,span_threshold,span1_R)
 plt.xticks(fontname=fontname, fontsize=fontsize)
 plt.yticks(fontname=fontname, fontsize=fontsize)
 plt.grid(False)
+#T-test
 g1 = span1_NR
 g2 = span1_R
 t, p = stats.ttest_ind(g1, g2)
@@ -288,7 +298,7 @@ ax.set(ylabel=features[2],xticklabels=['NR','R'])
 ax.ticklabel_format(style='sci', axis='y', scilimits=(0,0),useMathText=True)
 
 
-
+#Compute statistical differences and show them with print
 
 from scipy import stats
 
@@ -525,7 +535,7 @@ for markers in lista:
     print("Dimension 1 Validation")
 
 
-    ############################# Disc and validation
+    ############################# Discovery and validation
 
     ######
     direct=base+'/'+'Relapse/'+markers
@@ -629,7 +639,7 @@ for markers in lista:
 pFrame.index=lista
 tFrame.index=lista
 
-
+# Plot the differences in one plot
 
 import seaborn as sns
 fig=plt.subplots(dpi=300)

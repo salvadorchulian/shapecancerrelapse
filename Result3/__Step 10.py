@@ -50,7 +50,7 @@ f1list=[]
 recalllist=[]
 precisionlist=[]
 
-
+# Loop in each dimension, pixel and spread distribution
 
 for nitem in range(0,len(dimensions)):
     DIMENSION=dimensions[nitem]
@@ -122,10 +122,6 @@ for nitem in range(0,len(dimensions)):
             CV=6;
 
             scores = cross_val_score(classifier,imgs_array, labels, cv=CV)
-            #metrics.roc_auc_score(y_test,y_test_pred)
-            #metrics.recall_score(y_test,y_pred,zero_division=0)
-            #metrics.f1_score(y_test,y_pred,zero_division=0)
-            #metrics.precision_score(y_test,y_pred,zero_division=0)
             predictions = cross_val_predict(classifier,imgs_array, labels, cv=CV)
             accuracy = metrics.r2_score(labels, predictions)
             print("Score "+str(np.mean(scores)))
@@ -140,14 +136,13 @@ for nitem in range(0,len(dimensions)):
             tablaSVM[nitem][pixI][sprI][6]=np.mean(cross_val_score(classifier,imgs_array, labels, cv=CV,scoring='f1'))
             tablaSVM[nitem][pixI][sprI][7]=np.mean(cross_val_score(classifier,imgs_array, labels, cv=CV,scoring='precision'))
             
-            #accuracylist.append(accuracy)
-            #scorelist.append(np.mean(scores))
             print(len(imgs_array[0]))
             print('Done in '+str(np.round(time.time()-timeINI,3))+' secs.')
             
 import pandas as pd
 print('SVM K-FOLD')
 df=[]
+#Show statistics in Table
 for j in range(0,len(dimensions)):
     DIMENSION=dimensions[j]
     print('DIMENSION '+str(DIMENSION))

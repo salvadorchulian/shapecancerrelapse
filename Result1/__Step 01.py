@@ -23,6 +23,7 @@ def readingdir(direct):
     listdir=os.listdir(direct)
     listdir.sort()
     exports=[];
+    # Loop for the list of files from the main directory
     for i in range(0,len(listdir)):
         if listdir[i][0]!='.':
             print(listdir[i])
@@ -30,6 +31,7 @@ def readingdir(direct):
             listpac=os.listdir(direct+'/'+listdir[i])
             listpac.sort()
             exportspac=[];
+            # Loop for the list of files from the subdirectory
             for j in range(0,len(listpac)):
                 if listpac[j][0]!='.':
                     exportation=reading(direct+'/'+listdir[i]+'/'+listpac[j])
@@ -44,6 +46,7 @@ def readingdir(direct):
     return exports;
     
 def reading(datafile):
+    # This function read FCS files
     tube=flow.Tube(file=datafile)
     namemetadata=flow.operations.import_op.autodetect_name_metadata(datafile)
     import_op = flow.ImportOp(tubes = [tube],name_metadata='$PnN')
@@ -66,7 +69,7 @@ def reading(datafile):
         else:
             dicti['lista'].append([dicti['$P'+str(i)+'N']])
 
-            
+    # Choice of parameters to analyse
     ALLPARAM=['CD34','CD20','CD10','CD19','CD45','CD13','CD33','cyCD3','cyMPO','CD22','IGM','CD38','cyTDT','CD3','CD66','CD58']
     ALLPARAM.sort()
     chosenpar=ALLPARAM
@@ -79,6 +82,7 @@ def reading(datafile):
         return [];
 
 def choosepar(lista,chosenpar,channels):
+    # This function is able to select the markers choosen from the FCS files
     columnname=[];
     samplepar=[];
     changedpar=[];
@@ -112,6 +116,8 @@ os.mkdir(outdir)
 listdir=os.listdir(direct)
 listdir.sort()
 df=[]
+
+#Loop over patients' list
 for i in range(0,len(listdir)):
     pacient=listdir[i]
     if pacient[0]!='.':
@@ -119,10 +125,12 @@ for i in range(0,len(listdir)):
         print(pacient)
         listpac=os.listdir(direct+'/'+pacient)
         listpac.sort()
+        #Loop over files in patients' folders
         for j in range(0,len(listpac)):
             tube=listpac[j]
             df=pd.read_csv(direct+'/'+pacient+'/'+tube,sep=' ',header=None)
             dfnon=df[~df.duplicated(keep='first')]
+            # Checks whether there are cells with the same information after preprocessing
             if len(df[df.duplicated(keep='first')])>=1:
                 
                 os.mkdir(outdir+'/'+pacient)
